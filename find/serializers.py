@@ -18,7 +18,7 @@ class BarSerializer(serializers.HyperlinkedModelSerializer):
     class Meta: 
         model = Bar
         # fields = ('id', 'bar_name', 'photo_url', 'address', 'city', 'state', 'comment')
-        fields =('id', 'bar_url', 'comment')
+        fields =('id', 'bar_name', 'photo_url','address', 'city', 'state','bar_url', 'comment')
         
 
 class CommentSerializer(serializers.HyperlinkedModelSerializer):

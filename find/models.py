@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -19,7 +20,6 @@ class Song(models.Model):
     def __str__(self):
         return self.title
     
-    
 
 
 class Bar(models.Model):
@@ -36,6 +36,8 @@ class Comment(models.Model):
     bar = models.ForeignKey(Bar, on_delete=models.CASCADE, related_name='comment')
     name = models.CharField(max_length=50)
     comment = models.TextField()
+    # image = models.ImageField(upload_to='images/', blank=True)
+    # image = CloudinaryField('image', def)
     
     def __str__(self):
         return self.comment
