@@ -1,5 +1,5 @@
 from django import forms
-from .models import Artist, Song,Bar, Comment
+from .models import Bar, Comment
 
 # class ArtistForm(forms.ModelForm):
 
@@ -25,4 +25,4 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        fields = ('bar','name','comment',)
+        fields = ('bar','name','comment','image')
