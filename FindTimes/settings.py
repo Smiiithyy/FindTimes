@@ -11,12 +11,17 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
 
-import os
+
+# import os
 
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+
+env = environ.Env(DEBUG=(bool,False))
+environ.Env.read_env()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,7 +37,7 @@ SECRET_KEY = 'django-insecure-v&t9x-aeh9657hn87jx_5wtyz1s0i8r-f^%2v5cjy+t*5wda&=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -150,6 +155,15 @@ REST_FRAMEWORK = {
     # ]
 }
 
+
+
+cloudinary.config(
+  cloud_name = env("CLOUD_NAME"),
+  api_key = env("API_KEY"),
+  api_secret = env("API_SECRET")
+)
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -172,24 +186,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dt6p5s1vi',
-    'API_KEY': '394918644231525',
-    'API_SECRET': 'FPeAmFQurN1jldp-iaDU5tY-fKo'
-}
 
-CLOUDINARY_URL='cloudinary://394918644231525:FPeAmFQurN1jldp-iaDU5tY-fKo@dt6p5s1vi'
+
+CLOUDINARY_URL=env("CLOUDINARY_URL")
 
 MEDIA_URL = '/media/'  # or any prefix you choose
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+SECRET_KEY = env("SECRET_KEY")
 
-cloudinary.config(
-    cloud_name = 'dt6p5s1vi',
-    api_key = '394918644231525',
-    api_secret = 'FPeAmFQurN1jldp-iaDU5tY-fKo',
-    secure = True
-)
 
 
 
